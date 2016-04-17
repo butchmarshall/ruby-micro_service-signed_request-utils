@@ -28,7 +28,7 @@ To check if an authentication header is valid
 ```ruby
 require 'micro_service/signed_request/utils'
 
-MicroService::SignedRequest::Utils.authenticate("SignedRequest algorithm=...", "8bd2952b851747e8f2c937b340fed6e1.s")
+MicroService::SignedRequest::Utils.validate("SignedRequest algorithm=...", "8bd2952b851747e8f2c937b340fed6e1.s", "SignedRequest")
 ```
 
 To create a signature (not really useful except for unit testing)
@@ -37,7 +37,7 @@ To create a signature (not really useful except for unit testing)
 require 'micro_service/signed_request/utils'
 
 timestamp = Time.now.to_i*1000
-str = "algorithm=HmacSHA256&client_id=682a638ba74a4ff5fa6afa344b163e03.i&url=https%3A%2F%asdf%3A8443&tenant_id=b22e3911-28ef-480c-ae3b-ca791ba86952&timestamp=#{timestamp}";
+str = "algorithm=HmacSHA256&client_id=682a638ba74a4ff5fa6afa344b163e03.i&service_url=https%3A%2F%asdf%3A8443&timestamp=#{timestamp}";
 secret = "8bd2952b851747e8f2c937b340fed6e1.s";
 algorithm = "sha256";
 
